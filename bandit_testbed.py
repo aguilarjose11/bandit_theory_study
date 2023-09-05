@@ -1,5 +1,3 @@
-import torch
-from torch import Tensor
 from typing import List, Dict
 import scipy
 import copy
@@ -111,7 +109,7 @@ class KArmedBanditTestbed:
             # Perform testbed experiments
             for step in range(time_steps):
                 for name, algo in algorithms.items():
-                    selection = algo.choose()
+                    selection = algo()
                     reward = arms[selection].rvs(size=1)
                     algo.learn(arm=selection,
                                reward=reward)
